@@ -114,7 +114,10 @@
     <p>Terima kasih</p>
 </div>
 <script>
-    window.print()
+    document.getElementById('downloadButton').addEventListener('click', function () {
+        var element = document.body; // Anda dapat mengganti ini sesuai dengan elemen yang ingin Anda konversi ke PDF
+        html2pdf(element);
+    });
 </script>
 </body>
 </html>

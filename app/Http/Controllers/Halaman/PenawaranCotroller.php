@@ -61,9 +61,13 @@ class PenawaranCotroller extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id_history)
     {
-        //
+        // $dataLelang = Lelang::with('barang')->orderBy('id_lelang','desc')->get();
+        // $dataMasyarakat = Masyarakat::orderBy('id_user','desc')->get();
+        // $dataBarang = Barang::orderBy('id_barang','desc')->get();
+        $item = History_lelang::with('masyarakat','lelang','barang')->findOrFail($id_history);
+        return view('Halaman.Laporan.laporan',compact('item',));
     }
 
     /**
