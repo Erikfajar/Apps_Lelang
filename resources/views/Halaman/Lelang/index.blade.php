@@ -22,6 +22,7 @@
     <div class="container-fluid">
       <div class="row gy-4">
         <div class="col-lg-12">
+          @include('Layout.pesan')
           <div class="card mb-0">
             <div class="card-header">
               <h3 class="h4 mb-0">

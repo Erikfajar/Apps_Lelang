@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Masyarakat;
+use App\Models\Level;
 use App\Models\Petugas;
+use App\Models\Masyarakat;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,11 +23,18 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Petugas::create([
-            'nama_petugas' => 'Admin2',
-            'username' => 'admin3',
-            'password' => bcrypt('12345'),
-            'id_level' => 1
+        // Petugas::create([
+        //     'nama_petugas' => 'Admin2',
+        //     'username' => 'admin3',
+        //     'password' => bcrypt('12345'),
+        //     'id_level' => 1
+        // ]);
+
+        Level::create([
+            'level' => 'administrator'
+        ]);
+        Level::create([
+            'level' => 'petugas'
         ]);
 
         // Masyarakat::create([

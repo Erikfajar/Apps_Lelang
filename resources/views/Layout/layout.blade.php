@@ -26,6 +26,7 @@
 </head>
 
 <body>
+
     <header class="header">
         <nav class="navbar navbar-expand-lg py-3 bg-dash-dark-2 border-bottom border-dash-dark-1 z-index-10">
             <div class="search-panel">
@@ -56,8 +57,8 @@
                 <div class="navbar-header d-flex align-items-center"><a class="navbar-brand text-uppercase text-reset"
                         href="index.html">
                         <div class="brand-text brand-big"><strong
-                                class="text-primary">Dark</strong><strong>Admin</strong></div>
-                        <div class="brand-text brand-sm"><strong class="text-primary">D</strong><strong>A</strong></div>
+                                class="text-primary">Apps</strong><strong>Lelang</strong></div>
+                        <div class="brand-text brand-sm"><strong class="text-primary">A</strong><strong>L</strong></div>
                     </a>
                     <button class="sidebar-toggle">
                         <svg class="svg-icon svg-icon-sm svg-icon-heavy transform-none">
@@ -73,8 +74,8 @@
         <!-- Sidebar Navigation-->
         <nav id="sidebar">
             <!-- Sidebar Header-->
-            <div class="sidebar-header d-flex align-items-center p-4"><img
-                    class="avatar shadow-0 img-fluid rounded-circle" src="img/avatar-6.jpg" alt="...">
+            <div class="sidebar-header d-flex align-items-center p-4">
+                
                 <div class="ms-3 title">
                     <h1 class="h5 mb-1">
                         @if (Auth::guard('petugas')->check())
@@ -83,39 +84,65 @@
                             {{ Auth::guard('masyarakat')->user()->nama_lengkap }}
                         @endif
                     </h1>
-                    {{-- <p class="text-sm text-gray-700 mb-0 lh-1">
-                       
+                    <p class="text-sm text-gray-700 mb-0 lh-1">
+
                         @if (Auth::guard('petugas')->check())
-                            {{ Auth::guard('petugas')->user()->nama_petugas }}
+                            {{ Auth::guard('petugas')->user()->level->level }}
                         @elseif (Auth::guard('masyarakat')->check())
-                            {{ Auth::guard('masyarakat')->user()->telp }}
+                            User/Masyarakat
                         @endif
-                        </h1> --}}
+                        </h1>
                     </p>
                 </div>
-            </div><span class="text-uppercase text-gray-600 text-xs mx-3 px-2 heading mb-2">Main</span>
+            </div><span class="text-uppercase text-gray-600 text-xs mx-3 px-2 heading mb-2">Menu</span>
             <ul class="list-unstyled">
                 <li class="sidebar-item {{ request()->is('lelang') ? 'active' : '' }}"><a class="sidebar-link"
                         href="{{ route('home') }}">
                         <svg class="svg-icon svg-icon-sm svg-icon-heavy">
                             <use xlink:href="#real-estate-1"> </use>
                         </svg><span>Home </span></a></li>
-                <li class="sidebar-item {{ request()->is('lelang/data_barang') ? 'active' : '' }}"><a
-                        class="sidebar-link" href="{{ route('data_barang.index') }}">
-                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
-                            <use xlink:href="#portfolio-grid-1"> </use>
-                        </svg><span>Data Barang </span></a></li>
-                <li class="sidebar-item {{ request()->is('lelang/barang_lelang') ? 'active' : '' }}"><a
-                        class="sidebar-link" href="{{ route('barang_lelang.index') }}">
-                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
-                            <use xlink:href="#portfolio-grid-1"> </use>
-                        </svg><span>Lelang </span></a></li>
+                @if (auth()->guard('petugas')->check() &&
+                        auth()->guard('petugas')->user()->id_level == '1')
+                    <li class="sidebar-item {{ request()->is('lelang/data_barang') ? 'active' : '' }}"><a
+                            class="sidebar-link" href="{{ route('data_barang.index') }}">
+                            <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                                <use xlink:href="#portfolio-grid-1"> </use>
+                            </svg><span>Data Barang </span></a></li>
+                    <li class="sidebar-item {{ request()->is('lelang/barang_lelang') ? 'active' : '' }}"><a
+                            class="sidebar-link" href="{{ route('barang_lelang.index') }}">
+                            <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                                <use xlink:href="#portfolio-grid-1"> </use>
+                            </svg><span>Lelang </span></a></li>
+                @elseif (auth()->guard('petugas')->check() &&
+                        auth()->guard('petugas')->user()->id_level == '2')
+                    <li class="sidebar-item {{ request()->is('lelang/data_barang') ? 'active' : '' }}"><a
+                            class="sidebar-link" href="{{ route('data_barang.index') }}">
+                            <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                                <use xlink:href="#portfolio-grid-1"> </use>
+                            </svg><span>Data Barang </span></a></li>
+                    <li class="sidebar-item {{ request()->is('lelang/barang_lelang') ? 'active' : '' }}"><a
+                            class="sidebar-link" href="{{ route('barang_lelang.index') }}">
+                            <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                                <use xlink:href="#portfolio-grid-1"> </use>
+                            </svg><span>Lelang </span></a></li>
+                @endif
+           
                 <li class="sidebar-item {{ request()->is('lelang/penawaran') ? 'active' : '' }}"><a
                         class="sidebar-link" href="{{ route('penawaran.index') }}">
                         <svg class="svg-icon svg-icon-sm svg-icon-heavy">
                             <use xlink:href="#portfolio-grid-1"> </use>
                         </svg><span>Penawaran </span></a></li>
-              
+                <li class="sidebar-item {{ request()->is('lelang/registrasi') ? 'active' : '' }}"><a
+                        class="sidebar-link" href="{{ route('registrasi') }}">
+                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                            <use xlink:href="#portfolio-grid-1"> </use>
+                        </svg><span>Registrasi </span></a></li>
+                <li class="sidebar-item {{ request()->is('lelang/data_user') ? 'active' : '' }}"><a
+                        class="sidebar-link" href="{{ route('data_user') }}">
+                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                            <use xlink:href="#portfolio-grid-1"> </use>
+                        </svg><span>Data User </span></a></li>
+
                 <li class="sidebar-item"><a class="sidebar-link" href="{{ route('logout') }}">
                         <svg class="svg-icon svg-icon-sm svg-icon-heavy">
                             <use xlink:href="#portfolio-grid-1"> </use>
